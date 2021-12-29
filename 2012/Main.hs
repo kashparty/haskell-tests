@@ -143,7 +143,10 @@ buildLTS ps@((_, process) : _)
   where
     (result, _, _) = buildLTS' process [] 0
 
-    buildLTS' :: Process -> [(Process, Int)] -> Int -> (LTS, [(Process, Int)], Int)
+    buildLTS' :: Process 
+              -> [(Process, Int)] 
+              -> Int 
+              -> (LTS, [(Process, Int)], Int)
     buildLTS' STOP seen n
       = ([], seen, n)
     buildLTS' (Ref id') seen n
@@ -168,7 +171,9 @@ buildLTS ps@((_, process) : _)
       where
         (lts, seen', n') = buildLTS' p' ((p, n) : seen) n
         (lts', seen'', n'') = buildLTS' (Choice ps) seen' (n' - 1)
-        lts'' = map (\q@((f, t), i) -> if f == (n' - 1) then ((n, t), i) else q) lts'
+        lts'' = map (\q@((f, t), i) -> if f == (n' - 1) 
+                                       then ((n, t), i) 
+                                       else q) lts'
 
 ------------------------------------------------------
 -- Sample process definitions...
