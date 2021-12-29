@@ -149,13 +149,15 @@ buildLTS ps@((_, process) : _)
     buildLTS' (Ref id') seen n
       = buildLTS' (lookUp id' ps) seen n
     buildLTS' p@(Prefix id (Ref id')) seen n
-      | nextProcess `elem` map fst seen = ([((n, lookUp nextProcess seen), id)], (p, n) : seen, n + 1)
+      | nextProcess `elem` map fst seen = ([((n, lookUp nextProcess seen), id)], 
+                                           (p, n) : seen, n + 1)
       | otherwise                       = (((n, n + 1), id) : lts, seen', n')
       where
         nextProcess = lookUp id' ps
         (lts, seen', n') = buildLTS' nextProcess ((p, n) : seen) (n + 1)
     buildLTS' p@(Prefix id p') seen n
-      | p' `elem` map fst seen = ([((n, lookUp p' seen), id)], (p, n) : seen, n + 1)
+      | p' `elem` map fst seen = ([((n, lookUp p' seen), id)]
+                                  , (p, n) : seen, n + 1)
       | otherwise              = (((n, n + 1), id) : lts, seen', n')
       where
         (lts, seen', n') = buildLTS' p' ((p, n) : seen) (n + 1)
