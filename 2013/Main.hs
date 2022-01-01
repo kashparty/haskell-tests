@@ -48,7 +48,7 @@ deleteMin :: Ord a => BinHeap a -> BinHeap a
 deleteMin h
   = mergeHeaps [t | t <- h, t /= minTree] (reverse (children minTree))
   where
-    minTree = snd (minimum  (zip (map value h) h))
+    minTree = snd (minimum (zip (map value h) h))
 
 binSort :: Ord a => [a] -> [a]
 binSort xs
