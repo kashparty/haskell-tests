@@ -1,7 +1,6 @@
 import Data.List
 import Data.Maybe
 import Data.Tuple
-import Debug.Trace
 
 type Index = Int
 
