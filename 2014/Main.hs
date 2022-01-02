@@ -1,6 +1,5 @@
 import Data.Maybe
 import Data.List
-import Debug.Trace
 
 data RE = Null   |
           Term Char |
