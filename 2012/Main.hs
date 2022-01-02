@@ -1,6 +1,5 @@
 import Data.List
 import Data.Maybe
-import Debug.Trace
 
 type Id = String
 
