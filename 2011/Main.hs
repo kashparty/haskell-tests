@@ -1,5 +1,4 @@
 import Data.Maybe
-import Debug.Trace
 
 data Expr = Number Int |
             Boolean Bool |
