@@ -148,8 +148,7 @@ buildROBDD expr ids
         replacements = (0, 0) : (1, 1) : 
                        concat (zipWith replace representatives redundancies)
         nodes' = [(n, (v, lookUp l replacements, lookUp r replacements))
-                  | (n, (v, l, r)) <- nodes
-                  , n `elem` representatives]
+                  | (n, (v, l, r)) <- nodes, n `elem` representatives]
 
 ------------------------------------------------------
 -- Examples for testing...
