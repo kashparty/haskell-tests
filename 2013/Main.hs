@@ -37,8 +37,8 @@ mergeHeaps h@(t : ts) h'@(t' : ts')
   | otherwise        = mergeHeaps [combineTrees t t'] (mergeHeaps ts ts')
 mergeHeaps h []
   = h
-mergeHeaps [] h'
-  = h'
+mergeHeaps [] h
+  = h
 
 insert :: Ord a => a -> BinHeap a -> BinHeap a
 insert v
