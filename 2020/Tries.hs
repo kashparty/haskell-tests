@@ -106,14 +106,19 @@ insert f d b v node
       = Leaf [v]
     insert' f d b v l node@(Node bv subs)
       | not (testBit bv i) = Node (setBit bv i) (insertAt n (Term v) subs) 
-      | SubTrie t <- sub   = Node bv (replace n subs (SubTrie (insert' f (d - 1) b v (l + 1) t)))
-      | otherwise          = if v == v' then node else Node bv (replace n subs sub')
+      | SubTrie t <- sub   = node'
+      | otherwise          = if v == v' then node else node''
       where
         i = getIndex (f v) l b
         n = countOnesFrom i bv
         sub = subs !! n
+        SubTrie t = sub
         Term v' = sub
-        sub' = SubTrie (insert' f (d - 2) b v (l + 1) (insert' f (d - 1) b v' (l + 1) empty))
+        sub' = SubTrie (insert' f (d - 1) b v (l + 1) t)
+        node' = Node bv (replace n subs sub')
+        sub'' = SubTrie (insert' f (d - 2) b v (l + 1) 
+                       (insert' f (d - 1) b v' (l + 1) empty))
+        node'' = Node bv (replace n subs sub'')
 
 buildTrie :: HashFun -> Int -> Int -> [Int] -> Trie
 buildTrie f d b
