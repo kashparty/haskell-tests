@@ -139,8 +139,7 @@ parse' ('<' : rest) st
     (name, rest') = parseName rest
     (atts, rest'') = parseAttributes rest'
 parse' s st
-  | null rest = parse' rest st
-  | otherwise = parse' rest (addText text st)
+  = parse' rest (addText text st)
   where
     (text, rest) = break (== '<') s
 
