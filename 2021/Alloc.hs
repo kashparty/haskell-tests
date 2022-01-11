@@ -179,4 +179,4 @@ alloc :: Function -> Int -> Function
 alloc f n
   = renameFun f idMap 
   where
-    idMap = (buildIdMap . colourGraph n . buildIG . liveVars . buildCFG) f
+    idMap = (buildIdMap . colourGraph n . sortGraph . buildIG . map sort . liveVars . sortCFG . buildCFG) f
