@@ -174,3 +174,9 @@ buildCFG (id, args, b)
         bCFG' = init bCFG ++ [((finalId, finalVars), [pnt])]
         idx' = idx + length bCFG
         restCFG = buildCFG' idx' bs
+
+alloc :: Function -> Int -> Function
+alloc f n
+  = renameFun f idMap 
+  where
+    idMap = (buildIdMap . colourGraph n . buildIG . liveVars . buildCFG) f
