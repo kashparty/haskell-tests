@@ -6,7 +6,6 @@ import Data.List
 import Types
 import Examples
 import Data.Tuple
-import Debug.Trace
 
 ------------------------------------------------------
 --
